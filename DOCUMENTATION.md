@@ -36,6 +36,24 @@ Tudo isso será criado com uma identidade visual solene e fraterna, refletindo a
 - **Para as Pastorais**: Coordenadores terão um espaço para divulgar os horários e locais de seus encontros.
 - **Para a Secretaria**: A equipe administrativa terá uma ferramenta poderosa para gerenciar as rotas diárias com menos papelada e confusão.
 
+### E. Mapeamento do Site Atual (Referência de Migração - Catedral de Colatina)
+Com base na análise do site atual da Catedral de Colatina, mapeamos os seguintes conteúdos e dados que devem ser suportados pelo novo portal:
+1. **Agenda e Celebrações:** Horários de missas semanais (Matriz aberta diariamente das 06h às 20h; missas de segunda a quinta-feira às 19h; sexta-feira às 12h e 19h; sábado às 19h; e domingo às 07h, 09h e 19h).
+2. **Notícias e Avisos:** Mural atualizado da paróquia.
+3. **Sacramentos:** Orientações e agendamentos (Batismo, Crisma, Matrimônio e Unção dos Enfermos).
+4. **Pastorais e Movimentos:** Listagem e contatos das pastorais (Catequese, Dízimo, Família, Liturgia, Juventude, etc.).
+5. **Clero / Padres:** Apresentação da equipe de sacerdotes (Pároco responsável: Pe. Irineu Claudino Sales).
+6. **Comunidades:** Informações e agendas das capelas e comunidades filiadas.
+7. **Dízimo e Partilha:** Espaço litúrgico e seguro para doações/ofertas (Pix/Cartão).
+8. **Contatos e Localização:**
+   - *Endereço:* Praça Frei José, 26, Centro – Colatina/ES (Edifício João Paulo II, 1º Andar), CEP 29700-200.
+   - *Telefone Secretaria:* (27) 2102-5010
+   - *Telefone Administrativo:* (27) 2102-5009
+   - *Telefone Pastoral:* (27) 2102-5012
+   - *WhatsApp:* (27) 99755-1548
+   - *E-mails:* secretaria@catedraldecolatina.org.br / pscj-secretaria@catedraldecolatina.org.br / catedraldecolatina.sec@gmail.com
+9. **Galeria de Fotos:** Histórico visual de festas e eventos religiosos.
+
 **Nossa Missão**: Usar a tecnologia não para afastar as pessoas, mas para conectá-las ainda mais à vida em comunidade e aos sacramentos, sempre com uma linguagem respeitosa, litúrgica e acolhedora.
 
 ---
