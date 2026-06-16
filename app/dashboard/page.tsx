@@ -113,8 +113,8 @@ export default function DashboardPage() {
         }
 
         // Compute dynamic stats based on data loaded
-        const intPending = (intentionsRes.data ?? intentions).filter(i => i.status === "pending").length;
-        const sacPending = (sacramentsRes.data ?? sacraments).filter(s => s.status === "pending" || s.status === "analyzing").length;
+        const intPending = (intentionsRes.data ?? intentions).filter((i: any) => i.status === "pending").length;
+        const sacPending = (sacramentsRes.data ?? sacraments).filter((s: any) => s.status === "pending" || s.status === "analyzing").length;
         const commCount = communitiesRes.count ?? stats.activeCommunities;
 
         setStats({
