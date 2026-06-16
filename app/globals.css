@@ -4,9 +4,21 @@
   --background: #ffffff;
   --foreground: #0f172a;
 
-  /* Premium Design Tokens (Apple/Stripe Style) */
-  --primary: #10b981;
-  --primary-foreground: #ffffff;
+  /* Liturgical Color Tokens */
+  --liturgy-green: #10b981;
+  --liturgy-gold: #D4AF37;
+  --liturgy-purple: #6b21a8;
+  --liturgy-red: #C62828;
+  --liturgy-rose: #f472b6;
+  --liturgy-black: #171717;
+
+  /* Dynamic Liturgical Assignment (Defaults to Ordinary Time) */
+  --liturgical-primary: var(--liturgy-green);
+  --liturgical-primary-foreground: #ffffff;
+
+  /* Premium Design Tokens */
+  --primary: var(--liturgical-primary);
+  --primary-foreground: var(--liturgical-primary-foreground);
   
   --dash-bg: #f8fafc;
   --dash-surface: #ffffff;
@@ -40,6 +52,27 @@
   --public-glass-bg: rgba(255, 255, 255, 0.8);
   --public-status-bg: #ffffff;
   --public-modal-bg: #ffffff;
+}
+
+/* Liturgical State Selectors */
+[data-liturgy="advent"], [data-liturgy="lent"] {
+  --liturgical-primary: var(--liturgy-purple);
+  --liturgical-primary-foreground: #ffffff;
+}
+
+[data-liturgy="christmas"], [data-liturgy="easter"], [data-liturgy="solemnity"] {
+  --liturgical-primary: var(--liturgy-gold);
+  --liturgical-primary-foreground: #000000;
+}
+
+[data-liturgy="pentecost"], [data-liturgy="martyrs"], [data-liturgy="passion"] {
+  --liturgical-primary: var(--liturgy-red);
+  --liturgical-primary-foreground: #ffffff;
+}
+
+[data-liturgy="gaudete"], [data-liturgy="laetare"] {
+  --liturgical-primary: var(--liturgy-rose);
+  --liturgical-primary-foreground: #000000;
 }
 
 [data-theme="dark"] {
@@ -86,8 +119,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
+  
+  --color-liturgical: var(--liturgical-primary);
+  --color-liturgical-foreground: var(--liturgical-primary-foreground);
+  --color-gold: var(--liturgy-gold);
+  --color-red: var(--liturgy-red);
   
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
