@@ -1,4 +1,4 @@
-# Casa Digital Paroquial - Protocolo de Desenvolvimento (SSOT)
+# Casa Digital Paroquial - Protocolo Start (SSOT)
 
 ## 1. Escopo do Projeto (Raiz do Escopo - Ideia Inicial)
 
@@ -21,7 +21,7 @@ Tudo isso será criado com uma identidade visual solene e fraterna, refletindo a
 - **Transmissões ao Vivo**: Integração fácil para que os fiéis acompanhem as missas de casa quando não puderem estar presentes.
 
 #### 2. Secretaria Mais Ágil e Descomplicada
-- **Central de Atendimento**: Um local centralizado para organizar pedidos de sacramentos (Batismo, Casamento, Crisma) e intenções de missa.
+- **Secretaria Pastoral Digital**: Um local centralizado para organizar processos e inscrições (Processos Matrimoniais, Inscrições para Batismo, Fichas de Catequese) e intenções de missa.
 - **Contato Direto**: Botões práticos para o fiel falar diretamente com a secretaria via WhatsApp, tirando dúvidas de forma rápida e diminuindo a burocracia.
 
 #### 3. Dízimo e Partilha de Forma Segura e Respeitosa
@@ -40,7 +40,7 @@ Tudo isso será criado com uma identidade visual solene e fraterna, refletindo a
 Com base na análise do site atual da Catedral de Colatina, mapeamos os seguintes conteúdos e dados que devem ser suportados pelo novo portal:
 1. **Agenda e Celebrações:** Horários de missas semanais (Matriz aberta diariamente das 06h às 20h; missas de segunda a quinta-feira às 19h; sexta-feira às 12h e 19h; sábado às 19h; e domingo às 07h, 09h e 19h).
 2. **Notícias e Avisos:** Mural atualizado da paróquia.
-3. **Sacramentos:** Orientações e agendamentos (Batismo, Crisma, Matrimônio e Unção dos Enfermos).
+3. **Secretaria Pastoral:** Orientações, processos e inscrições (Processo para Batismo, Inscrição na Crisma, Processo Matrimonial, etc).
 4. **Pastorais e Movimentos:** Listagem e contatos das pastorais (Catequese, Dízimo, Família, Liturgia, Juventude, etc.).
 5. **Clero / Padres:** Apresentação da equipe de sacerdotes (Pároco responsável: Pe. Irineu Claudino Sales).
 6. **Comunidades:** Informações e agendas das capelas e comunidades filiadas.
@@ -71,7 +71,7 @@ Este documento serve como a **Fonte Única de Verdade (SSOT)** para a arquitetur
   - Toda modal (ex: solicitação de sacramento, formulário de intenção) que precise cobrir 100% da tela DEVE ser renderizada via **React Portals** (`createPortal(..., document.body)`) para evitar quebra de layout de z-index em visualizações PWA ou embeds.
 
 ## 4. Segurança e Dados (RLS)
-- **Isolamento de Tenants:** Todo insert na tabela `posts`, `sacrament_requests` ou `mass_intentions` deve carregar obrigatoriamente o `parish_id` do perfil do usuário logado.
+- **Isolamento de Tenants:** Todo insert nas tabelas do sistema (como `posts`, inscrições em `pastoral_processes` ou `mass_intentions`) deve carregar obrigatoriamente o `parish_id` do perfil do usuário logado.
 - **Políticas de Leitura:** Fiéis só podem ler posts da paróquia ativa. Visitantes anônimos só leem posts marcados como `status = 'published'` e de paróquias com status ativo.
 
 ## 5. Estrutura de Roteamento Dinâmico (App Router)
@@ -82,3 +82,6 @@ Este documento serve como a **Fonte Única de Verdade (SSOT)** para a arquitetur
 
 ## 6. Dízimo e Ofertas (Experiência Humana)
 - O fluxo de doação deve exibir mensagens personalizadas focadas em gratidão e acolhimento em vez de alertas de faturamento frios de e-commerce.
+
+## 7. Protocolo Start (Ambiente Local)
+- **Link Local Dedicado (EcclesiamApp):** [http://localhost:3001](http://localhost:3001)

@@ -57,11 +57,36 @@ export async function middleware(request: NextRequest) {
     return cleanResponse;
   }
 
-  // Proteção de rotas para Dashboard e Admin
-  if (!user && (path.startsWith("/dashboard") || path.startsWith("/admin") || path.startsWith("/onboarding"))) {
+  // --- BYPASS DE DESENVOLVIMENTO ---
+  // Permite acesso direto à rota de superadmin no ambiente local para testes de interface
+  if (process.env.NODE_ENV === "development" && path.startsWith("/superadmin")) {
+    return response;
+  }
+  // ---------------------------------
+
+  // Proteção de rotas gerais que exigem login
+  if (!user && (path.startsWith("/dashboard") || path.startsWith("/admin") || path.startsWith("/onboarding") || path.startsWith("/superadmin"))) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/login";
     return NextResponse.redirect(redirectUrl);
+  }
+
+  // Proteção rigorosa específica para rotas de Super Admin
+  if (user && path.startsWith("/superadmin")) {
+    // Verifica na tabela user_roles se o usuário possui a role superadmin
+    const { data: roleData } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .eq("role", "superadmin")
+      .maybeSingle();
+
+    if (!roleData) {
+      // Usuário logado, mas NÃO é superadmin. Redireciona para fora da área restrita.
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = "/dashboard";
+      return NextResponse.redirect(redirectUrl);
+    }
   }
 
   return response;

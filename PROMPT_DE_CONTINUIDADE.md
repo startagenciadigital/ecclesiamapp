@@ -1,29 +1,25 @@
 # Prompt de Continuidade - Ecclesiam (Rede Social de Paróquias)
 
 ## 📌 Contexto Atual
-- **Design System**: A base visual (estilo Portal Clássico/Moderno) foi estabelecida em `globals.css` e `layout.tsx` utilizando as fontes Playfair Display e Inter.
-- **Sistema de Cores Litúrgicas Dinâmicas**: Criamos a lógica em `lib/liturgical-calendar.ts` e injetamos através do `LiturgicalProvider`. O sistema já se adapta automaticamente ao tempo da Igreja (Verde, Roxo, Branco/Dourado, etc).
-- **White Label**: Removemos as referências codificadas ('hardcoded') de "Ecclesiam". O app agora consome a variável de ambiente `NEXT_PUBLIC_TENANT_NAME` para definir títulos e logotipos da paróquia cliente.
-- **Situação do Git**: Todas essas fundações estão *commitadas* de forma limpa na branch `main`.
+- **Design System**: Base visual estabelecida em `globals.css` e `layout.tsx` (Playfair Display e Inter). Cores Litúrgicas Dinâmicas (`LiturgicalProvider`).
+- **Arquitetura Multi-Tenant Base**: O sistema suporta múltiplas paróquias sob o mesmo banco (isoladas via `tenant_id` no Row Level Security).
+- **Banco de Dados Concluído**:
+  - `01_multi_tenant_schema`: Tabelas `tenants` e `user_roles`.
+  - `02_core_parish_schema`: Tabelas vitais da paróquia (`communities`, `mass_schedules`, `posts`, `sacrament_requests` renomeado no escopo para `pastoral_processes`, e `mass_intentions`).
+  - `03_confessions_schema`: Inteligência em slots para agendamento direto de confissões (tabelas `confession_schedules` e `confession_appointments`), impedindo choques de horários.
+- **Painel do SaaS (Super Admin)**: A rota base `/superadmin` foi desenhada e atualizada com métricas avançadas (Stripe, MRR, Total de Fiéis), servindo exclusivamente como gerenciador do negócio SaaS.
 
 ## 🎯 Objetivo da Sessão Atual
-O usuário aprovou o fluxo do **MAIN ADMIN & Arquitetura Multi-Tenant**. Este plano dita que o próximo passo é criar o "cérebro" da operação SaaS, que gerencia as paróquias (Tenants).
+O usuário deve escolher em qual frente visual o desenvolvimento deve seguir, já que todo o alicerce de banco de dados e arquitetura está montado e validado.
 
 ## 🚀 Próximos Passos (Ação Imediata para o Agente)
-Por favor, retome a execução baseada no último Plano de Implementação aprovado. Suas próximas tarefas de desenvolvimento de código são:
+Por favor, pergunte ao usuário qual das duas rotas de programação visual ele deseja priorizar agora:
 
-1. **Criar os Scripts do Banco de Dados (Supabase)**:
-   - Criar o arquivo `docs/database/01_multi_tenant_schema.sql` contendo:
-     - Tabela `tenants` (id, name, slug, theme_color, etc).
-     - Tabela `user_roles` (user_id, role, tenant_id).
-     - Definição do RLS (Row Level Security) básico.
+**[ OPÇÃO 1 ] - Foco Comercial (SaaS Onboarding)**
+- Criar a Landing Page de conversão de novas paróquias (`app/saas/page.tsx`).
+- Criar o fluxo de Auto-Cadastro e Assinatura.
+- Criar o *Assistente de Onboarding (Wizard)* que a secretaria de uma paróquia nova deverá preencher (cor, logo e padroeiro) antes de acessar o sistema.
 
-2. **Criar a Rota do Super Admin**:
-   - Criar `app/superadmin/layout.tsx` (layout isolado para gestão).
-   - Criar `app/superadmin/page.tsx` (Dashboard do SaaS que listará os Tenants).
-
-3. **Atualizar o Middleware de Autenticação**:
-   - Editar `middleware.ts` para proteger a rota `/superadmin/*`, garantindo que apenas usuários logados com a role `'superadmin'` no Supabase tenham acesso.
-
-4. **Tarefas de Acompanhamento (`task.md`)**:
-   - Crie o artefato `task.md` refletindo esses 3 passos de execução para acompanharmos o progresso durante esta próxima sessão.
+**[ OPÇÃO 2 ] - Foco no Produto Final (Dashboard do Assinante)**
+- Criar a interface oficial da **Secretaria Local** (ex: `/[slug]/dashboard`).
+- Implementar as telas práticas baseadas no novo banco de dados: O mural para postar Avisos e a tela de Gestão da Agenda de Confissões (onde a secretaria vê quem agendou e pode marcar manualmente).

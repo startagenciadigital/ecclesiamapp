@@ -97,6 +97,16 @@ export default function LoginPage() {
     setLoading(true);
     setErrorMsg("");
 
+    // --- BYPASS DE ADMINDEV ---
+    if (email === "admindev" && password === "admin") {
+      setSuccess(true);
+      setTimeout(() => {
+        router.push("/superadmin");
+      }, 1500);
+      return;
+    }
+    // --------------------------
+
     try {
       const { error, data } = await supabase.auth.signInWithPassword({
         email,
@@ -312,10 +322,10 @@ export default function LoginPage() {
                       <div className="relative">
                         <Mail className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
                         <input
-                          type="email"
+                          type="text"
                           required
                           className="w-full pl-10 pr-4 py-3.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-2xl text-sm focus:outline-none focus:border-amber-500 transition-all"
-                          placeholder="Ex: secretaria@paroquia.org"
+                          placeholder="Ex: secretaria@paroquia.org ou admindev"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
